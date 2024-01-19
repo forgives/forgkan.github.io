@@ -20,15 +20,20 @@
     var CONFIG = {"hostname":"forgives.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://forgives.github.io/tags/internet/index.html">
+  <meta name="description" content="很多地方的都是使用的glob模式匹配，比如linux的shel, vscode的搜索，git的gitignore文件，npm的package.json等等。 这次因为aone单测排除文件逻辑也改成了glob模式匹配，所以记录一下glob模式匹配的语法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Glob Patterns 笔记">
+<meta property="og:url" content="https://forgives.github.io/2024/01/18/note/20240118-glob-patterns/index.html">
 <meta property="og:site_name" content="Hello World">
+<meta property="og:description" content="很多地方的都是使用的glob模式匹配，比如linux的shel, vscode的搜索，git的gitignore文件，npm的package.json等等。 这次因为aone单测排除文件逻辑也改成了glob模式匹配，所以记录一下glob模式匹配的语法。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-18T01:33:00.000Z">
+<meta property="article:modified_time" content="2024-01-19T13:14:58.748Z">
 <meta property="article:author" content="lianhui.klh">
+<meta property="article:tag" content="regular">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://forgives.github.io/tags/internet/">
+<link rel="canonical" href="https://forgives.github.io/2024/01/18/note/20240118-glob-patterns/">
 
 
 <script id="page-configurations">
@@ -36,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: internet | Hello World</title>
+  <title>Glob Patterns 笔记 | Hello World</title>
   
 
 
@@ -145,51 +150,120 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">internet
-          <small>标签</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://forgives.github.io/2024/01/18/note/20240118-glob-patterns/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cbu01.alicdn.com/cms/upload/2016/600/239/2932006_509044107.jpg">
+      <meta itemprop="name" content="lianhui.klh">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Glob Patterns 笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-01-18 09:33:00" itemprop="dateCreated datePublished" datetime="2024-01-18T09:33:00+08:00">2024-01-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-19 21:14:58" itemprop="dateModified" datetime="2024-01-19T21:14:58+08:00">2024-01-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%AD%A3%E5%88%99/" itemprop="url" rel="index"><span itemprop="name">正则</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
+        <p>很多地方的都是使用的<code>glob</code>模式匹配，比如<code>linux</code>的<code>shel</code>, <code>vscode</code>的搜索，<code>git</code>的<code>gitignore</code>文件，<code>npm</code>的<code>package.json</code>等等。</p>
+<p>这次因为<code>aone</code>单测排除文件逻辑也改成了<code>glob</code>模式匹配，所以记录一下<code>glob</code>模式匹配的语法。</p>
+<span id="more"></span>
+
+<p>以下是一些常用的glob模式以及它们的含义（<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editor/glob-patterns">参考链接</a>）：</p>
+<ol>
+<li><code>*</code>：匹配零个或多个字符（除了目录分隔符）。例如，<code>*.txt</code>会匹配当前目录中所有以<code>.txt</code>结尾的文件。</li>
+<li><code>?</code>：匹配任意单个字符。例如，<code>?.txt</code>会匹配所有单一字符后跟<code>.txt</code>的文件，如<code>a.txt</code>，但不会匹配<code>aa.txt</code>。<br>3.<code>[...]</code>：匹配方括号内的任意单个字符。可以使用破折号-表示字符范围。例如，<code>[a-c].txt</code>会匹配<code>a.txt</code>、<code>b.txt</code>和<code>c.txt</code>。</li>
+<li><code>[^...]</code> 或 <code>[!...]</code>：匹配不在方括号内的任意单个字符。例如，<code>[^a-c].txt</code>会匹配除了<code>a.txt</code>、<code>b.txt</code>和<code>c.txt</code>之外的任何以<code>.txt</code>结尾的文件。</li>
+<li><code>**</code>：在一些系统中，这个模式用于匹配任意数量的目录和子目录。例如，在<code>Node.js</code>的<code>glob</code>模块中，<code>**/*.txt</code>会匹配当前目录以及所有子目录中的<code>.txt</code>文件。</li>
+<li><code>&#123;&#125;</code>：分组模式，匹配大括号内以逗号分隔的任意模式之一。例如，<code>&#123;*.txt,*.md&#125;</code>会匹配所有扩展名为<code>.txt</code>或<code>.md</code>的文件。</li>
+<li><code>\</code>：转义字符，用于匹配特殊字符。例如，<code>\*</code>会匹配字面的<code>*</code>字符。</li>
+<li><code>/</code>：匹配路径分隔符，即时在<strong>windows</strong>中也是使用<code>/</code>作为路径分隔符。</li>
+</ol>
+<p>下面是一些glob模式的示例和它们的匹配结果：</p>
+<p><code>*.js</code>：匹配当前目录下所有扩展名为<code>.js</code>的文件。</p>
+<p><code>*/*</code>：匹配当前目录下所有子目录中的文件，但不包括子目录的子目录（<strong>不递归</strong>）。</p>
+<p><code>**/*.js</code>：匹配当前目录以及所有子目录中的扩展名为<code>.js</code>的文件（<strong>递归</strong>）。</p>
+<p><code>images/*.png</code>：匹配images子目录下所有扩展名为<code>.png</code>的文件。</p>
+<p><code>*.&#123;png,jpg,jpeg&#125;</code>：匹配当前目录下所有扩展名为<code>.png</code>、<code>.jpg</code>或<code>.jpeg</code>的文件。</p>
+<p><code>data[0-9].txt</code>：匹配文件名为data后跟一个数字，扩展名为<code>.txt</code>的文件（如<code>data1.txt</code>）。</p>
+<p><em>线上测试地址</em>: <a target="_blank" rel="noopener" href="https://globster.xyz/">https://globster.xyz/</a></p>
+<p><strong>综上：glob中值得注意的是 <code>**</code> 与 <code>/</code> 的使用，其他的与常用正则表达式一致。</strong></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-01-01T15:31:00+08:00"
-              content="2024-01-01">
-          01-01
-        </time>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/regular/" rel="tag"># regular</a>
+          </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/01/01/note/20240101-free-domain/" itemprop="url">
-            <span itemprop="name">免费域名注册</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/01/16/java/20240116-jEnv/" rel="prev" title="使用jEnv管理多java版本">
+      <i class="fa fa-chevron-left"></i> 使用jEnv管理多java版本
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/01/18/java/20240118-jpms/" rel="next" title="Java 模块化指南">
+      Java 模块化指南 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
@@ -257,18 +331,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">205</span>
+          <span class="site-state-item-count">210</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">100</span>
+        <span class="site-state-item-count">103</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
