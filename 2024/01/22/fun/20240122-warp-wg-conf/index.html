@@ -28,7 +28,7 @@
 <meta property="og:description" content="对网上warp生成WireGard配置脚本做分析记录，知其然且知其所以然。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-01-22T13:46:00.000Z">
-<meta property="article:modified_time" content="2024-01-26T14:37:23.869Z">
+<meta property="article:modified_time" content="2024-01-27T06:58:08.870Z">
 <meta property="article:author" content="lianhui.klh">
 <meta property="article:tag" content="net">
 <meta name="twitter:card" content="summary">
@@ -187,7 +187,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-01-26 22:37:23" itemprop="dateModified" datetime="2024-01-26T22:37:23+08:00">2024-01-26</time>
+                <time title="修改时间：2024-01-27 14:58:08" itemprop="dateModified" datetime="2024-01-27T14:58:08+08:00">2024-01-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -257,6 +257,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">wgcf.exe generate</span></span><br><span class="line">2024/01/26 22:27:53 Using config file: wgcf-account.toml</span><br><span class="line">2024/01/26 22:27:54 =======================================</span><br><span class="line">2024/01/26 22:27:54 Device name   : forg20240126</span><br><span class="line">2024/01/26 22:27:54 Device model  : PC</span><br><span class="line">2024/01/26 22:27:54 Device active : true</span><br><span class="line">2024/01/26 22:27:54 Account type  : limited</span><br><span class="line">2024/01/26 22:27:54 Role          : child</span><br><span class="line">2024/01/26 22:27:54 Premium data  : 21.85 PiB</span><br><span class="line">2024/01/26 22:27:54 Quota         : 21.85 PiB</span><br><span class="line">2024/01/26 22:27:54 =======================================</span><br><span class="line">2024/01/26 22:27:54 Successfully generated WireGuard profile: wgcf-profile.conf</span><br></pre></td></tr></table></figure>
 <p>好了，找个二维码生成器把<code>wgcf-profile.conf</code>内容贴进去，生成二维码之后扫码导入，启动成功连接。</p>
 <h2 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h2><p>记录下有类似脚本会把<code>Endpoint</code>换成<code>162.159.193.10:2408</code>。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.misaka.rest/2023/03/12/cf-warp-yxip/">https://blog.misaka.rest/2023/03/12/cf-warp-yxip/</a></p>
 
     </div>
 
