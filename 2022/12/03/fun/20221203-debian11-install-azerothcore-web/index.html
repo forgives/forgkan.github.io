@@ -28,7 +28,7 @@
 <meta property="og:description" content="debian11 安装 azerothcore 的对应注册网站 WoWSimpleRegistration">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-03T08:32:00.000Z">
-<meta property="article:modified_time" content="2023-02-27T12:57:13.122Z">
+<meta property="article:modified_time" content="2024-03-03T10:50:35.140Z">
 <meta property="article:author" content="lianhui.klh">
 <meta property="article:tag" content="fun">
 <meta property="article:tag" content="wow">
@@ -188,7 +188,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-27 20:57:13" itemprop="dateModified" datetime="2023-02-27T20:57:13+08:00">2023-02-27</time>
+                <time title="修改时间：2024-03-03 18:50:35" itemprop="dateModified" datetime="2024-03-03T18:50:35+08:00">2024-03-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,10 +254,19 @@
 <p>之后就可以直接使用了，测试了一下功能都支持。</p>
 <h2 id="debian-11-的安装"><a href="#debian-11-的安装" class="headerlink" title="debian 11 的安装"></a>debian 11 的安装</h2><p>debian 11 上主要还是需要安装 <code>php</code> 和 <code>nginx</code> 且配置好对应的关系。</p>
 <p>首先安装PHP</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install sudo apt install php php-cgi php-fpm php-mysql -y</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install php php-cgi php-fpm php-mysql -y</span><br></pre></td></tr></table></figure>
 
 <p>在继续安装php组件(这里需要单独安装否则一直会 500 错误页面白屏。。。)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install php7.4-gmp php7.4-curl php7.4-mbstring  php7.4-gd php7.4-soap php7.4-imap php7.4-mysql -y</span><br></pre></td></tr></table></figure>
+<ul>
+<li>GMP Extension</li>
+<li>GD Extension</li>
+<li>Soap Extension</li>
+<li>Mbstring Extension</li>
+<li>PDO Extension</li>
+<li>PDO-MySQL Extension</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install php-gmp php-curl php-mbstring  php-gd php-soap php-imap php-mysql php-pdo -y</span><br></pre></td></tr></table></figure>
+
 <p>安装<code>nginx</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
 <p>修改nginx的配置文件</p>
@@ -267,13 +276,16 @@
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    ...</span><br><span class="line">    charset &#x27;utf-8&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>好了，开始 nginx 配置 php </p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    listen [::]:80;</span><br><span class="line">    charset &#x27;utf-8&#x27;;</span><br><span class="line"></span><br><span class="line">    root /var/www/html;</span><br><span class="line">    index index.php index.html index.htm;</span><br><span class="line"></span><br><span class="line">    server_name your_domain;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        try_files $uri $uri/ =404;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        include snippets/fastcgi-php.conf;</span><br><span class="line">        fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    listen [::]:80;</span><br><span class="line">    charset &#x27;utf-8&#x27;;</span><br><span class="line"></span><br><span class="line">    root /var/www/html;</span><br><span class="line">    index index.php index.html index.htm;</span><br><span class="line"></span><br><span class="line">    server_name your_domain;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        try_files $uri $uri/ =404;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        include snippets/fastcgi-php.conf;</span><br><span class="line">        fastcgi_pass unix:/var/run/php/php-fpm.sock;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改PHP配置<br>&#x2F;etc&#x2F;php&#x2F;8.1&#x2F;fpm&#x2F;php.ini</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">extension=curl</span><br><span class="line">;extension=ffi</span><br><span class="line">打开上面php组件的配置</span><br></pre></td></tr></table></figure>
 
 <p>重启nginx</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart nginx</span><br></pre></td></tr></table></figure>
 
 <p>最好安装一个 php 探针看下组件是安装成功。</p>
-<p>好了，网站可以访问了 <a target="_blank" rel="noopener" href="http://1.117.116.145/">http://1.117.116.145/</a></p>
+<p>好了，网站可以访问了。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://computingforgeeks.com/how-to-install-php-8-2-on-debian/">How To Install PHP 8.2 on Debian 12&#x2F;11&#x2F;10</a></p>
 
     </div>
 
@@ -358,7 +370,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#WoWSimpleRegistration"><span class="nav-number">1.</span> <span class="nav-text">WoWSimpleRegistration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">Windows的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="nav-number">2.1.</span> <span class="nav-text">问题记录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%98%BE%E7%A4%BA403"><span class="nav-number">2.1.1.</span> <span class="nav-text">访问显示403</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-server-requested-authentication-method-unknown-to-the-client"><span class="nav-number">2.1.2.</span> <span class="nav-text">The server requested authentication method unknown to the client</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SMTP%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.3.</span> <span class="nav-text">SMTP的配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#debian-11-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">debian 11 的安装</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#WoWSimpleRegistration"><span class="nav-number">1.</span> <span class="nav-text">WoWSimpleRegistration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">Windows的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="nav-number">2.1.</span> <span class="nav-text">问题记录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%98%BE%E7%A4%BA403"><span class="nav-number">2.1.1.</span> <span class="nav-text">访问显示403</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-server-requested-authentication-method-unknown-to-the-client"><span class="nav-number">2.1.2.</span> <span class="nav-text">The server requested authentication method unknown to the client</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SMTP%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.3.</span> <span class="nav-text">SMTP的配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#debian-11-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">debian 11 的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -374,13 +386,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">216</span>
+          <span class="site-state-item-count">217</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
