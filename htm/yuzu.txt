@@ -6,4 +6,4 @@ https://github.com/aidanmcb1/Yuzu
 
 https://github.com/aidanmcb1/Citra
 
-New Project: https://gitlab.com/suyu-emu/suyu
+New Project: https://suyu.dev/
