@@ -28,7 +28,7 @@
 <meta property="og:description" content="对网上warp生成WireGard配置脚本做分析记录，知其然且知其所以然。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-01-22T13:46:00.000Z">
-<meta property="article:modified_time" content="2024-01-28T06:48:08.211Z">
+<meta property="article:modified_time" content="2024-05-05T04:58:00.910Z">
 <meta property="article:author" content="lianhui.klh">
 <meta property="article:tag" content="net">
 <meta name="twitter:card" content="summary">
@@ -187,7 +187,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-01-28 14:48:08" itemprop="dateModified" datetime="2024-01-28T14:48:08+08:00">2024-01-28</time>
+                <time title="修改时间：2024-05-05 12:58:00" itemprop="dateModified" datetime="2024-05-05T12:58:00+08:00">2024-05-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -218,12 +218,12 @@
 <p>注册新的账号并把账号信息保存在<code>wgcf-account.toml</code>中 (这里是随意注册的一个账户)</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> wgcf-account.toml</span></span><br><span class="line">access_token = &#x27;bd88d432-9237-4edb-be29-d548913aaa3c&#x27;</span><br><span class="line">device_id = &#x27;1ddcf044-49f5-4a2b-b07e-5b6dea119f70&#x27;</span><br><span class="line">license_key = &#x27;02p3t7mN-z5Qu246C-k196XJA0&#x27;</span><br><span class="line">private_key = &#x27;SO/R6UTO0rbizGiWT1iDRBpg1HWZRCdpa2V6GS7fmGw=&#x27;</span><br></pre></td></tr></table></figure>
 <p>其中的<code>license_key</code>就是<code>warp</code>提供的Key</p>
-<h3 id="生成配置"><a href="#生成配置" class="headerlink" title="生成配置"></a>生成配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wgcf generate</span><br></pre></td></tr></table></figure>
-<p>生成<code>wgcf-profile.conf</code>的<code>WireGuard</code>配置文件。</p>
 <h3 id="更新Key"><a href="#更新Key" class="headerlink" title="更新Key"></a>更新Key</h3><p>修改<code>wgcf-account.toml</code> 文件中的<code>license_key</code>，然后执行</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wgcf update --name forg20240122</span><br></pre></td></tr></table></figure>
 <p>上面的<code>--name</code>参数是更新设备名称。</p>
 <p>注意更新之后记得需要重新生成<code>WireGuard</code>的配置文件<code>wgcf generate</code>。生成之后就可以直接导入到支持<code>WireGuard</code>的工具中使用了。</p>
+<h3 id="生成配置"><a href="#生成配置" class="headerlink" title="生成配置"></a>生成配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wgcf generate</span><br></pre></td></tr></table></figure>
+<p>生成<code>wgcf-profile.conf</code>的<code>WireGuard</code>配置文件。</p>
 <h3 id="查看设备状态"><a href="#查看设备状态" class="headerlink" title="查看设备状态"></a>查看设备状态</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">wgcf status</span><br><span class="line"></span><br><span class="line">2024/01/26 21:43:35 Using config file: wgcf-account.toml</span><br><span class="line">2024/01/26 21:43:36 Setting device name</span><br><span class="line">2024/01/26 21:43:38 =======================================</span><br><span class="line">2024/01/26 21:43:38 Device name   : forg20240126</span><br><span class="line">2024/01/26 21:43:38 Device model  : PC</span><br><span class="line">2024/01/26 21:43:38 Device active : true</span><br><span class="line">2024/01/26 21:43:38 Account type  : limited</span><br><span class="line">2024/01/26 21:43:38 Role          : child</span><br><span class="line">2024/01/26 21:43:38 Premium data  : 21.85 PiB</span><br><span class="line">2024/01/26 21:43:38 Quota         : 21.85 PiB</span><br><span class="line">2024/01/26 21:43:38 =======================================</span><br><span class="line">2024/01/26 21:43:38 Successfully updated Cloudflare Warp account</span><br></pre></td></tr></table></figure>
 <p>上面是我使用自己的设备与<code>Warp+</code>的key生成的账户状态。</p>
 <h2 id="制品解析"><a href="#制品解析" class="headerlink" title="制品解析"></a>制品解析</h2><p>使用<code>replit</code> 作为运行环境 <a target="_blank" rel="noopener" href="https://replit.com/@misaka-blog/wgcf-profile-generator">https://replit.com/@misaka-blog/wgcf-profile-generator</a><br>开始解析网上流传的生成配置的shell脚本。</p>
@@ -262,6 +262,10 @@
 
 <p>记录下有类似脚本会把<code>Endpoint</code>换成<code>162.159.193.10:2408</code>。</p>
 <p><a target="_blank" rel="noopener" href="https://blog.misaka.rest/2023/03/12/cf-warp-yxip/">https://blog.misaka.rest/2023/03/12/cf-warp-yxip/</a></p>
+<p>Endpoint 范围</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">162.159.192.1（1的取值范围0-254）</span><br><span class="line">162.159.193.1（1的取值范围0-254）</span><br><span class="line">162.159.195.1（1的取值范围0-254）</span><br><span class="line">162.159.204.1（1的取值范围0-254）</span><br><span class="line">188.114.96.1（1的取值范围0-254）</span><br><span class="line">188.114.97.1（1的取值范围0-254）</span><br><span class="line">188.114.98.1（1的取值范围0-254）</span><br><span class="line">188.114.99.1（1的取值范围0-254）</span><br></pre></td></tr></table></figure>
+
+<p>可用端口：500、854、859、864、878、880、890、891、894、903、908、928、934、939、942、943、945、946、955、968、987、988、1002、1010、1014、1018、1070、1074、1180、1387、1701、1843、2371、2408、2506、3138、3476、3581、3854、4177、4198、4233、4500、5279、5956、7103、7152、7156、7281、7559、8319、8742、8854、8886</p>
 
     </div>
 
@@ -345,7 +349,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">基础命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C"><span class="nav-number">1.1.</span> <span class="nav-text">注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">生成配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0Key"><span class="nav-number">1.3.</span> <span class="nav-text">更新Key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E8%AE%BE%E5%A4%87%E7%8A%B6%E6%80%81"><span class="nav-number">1.4.</span> <span class="nav-text">查看设备状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%B6%E5%93%81%E8%A7%A3%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">制品解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.1.</span> <span class="nav-text">前置步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E9%A1%B92"><span class="nav-number">2.2.</span> <span class="nav-text">选项2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E9%A1%B93"><span class="nav-number">2.3.</span> <span class="nav-text">选项3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E9%A1%B91"><span class="nav-number">2.4.</span> <span class="nav-text">选项1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.5.</span> <span class="nav-text">后置步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81"><span class="nav-number">3.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PS"><span class="nav-number">4.</span> <span class="nav-text">PS</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">基础命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C"><span class="nav-number">1.1.</span> <span class="nav-text">注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0Key"><span class="nav-number">1.2.</span> <span class="nav-text">更新Key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E9%85%8D%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">生成配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E8%AE%BE%E5%A4%87%E7%8A%B6%E6%80%81"><span class="nav-number">1.4.</span> <span class="nav-text">查看设备状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%B6%E5%93%81%E8%A7%A3%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">制品解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.1.</span> <span class="nav-text">前置步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E9%A1%B92"><span class="nav-number">2.2.</span> <span class="nav-text">选项2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E9%A1%B93"><span class="nav-number">2.3.</span> <span class="nav-text">选项3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E9%A1%B91"><span class="nav-number">2.4.</span> <span class="nav-text">选项1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.5.</span> <span class="nav-text">后置步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81"><span class="nav-number">3.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PS"><span class="nav-number">4.</span> <span class="nav-text">PS</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -361,7 +365,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">225</span>
+          <span class="site-state-item-count">227</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -372,7 +376,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">110</span>
+        <span class="site-state-item-count">111</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
